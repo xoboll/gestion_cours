@@ -375,6 +375,9 @@ function getMoyClass($m) {
 
 <nav class="navbar">
     <a href="../index.php" class="logo">🎓 <span>CampusLink</span> CI</a>
+    <button class="sidebar-toggle" type="button" aria-label="Afficher le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
         <li><span style="color:#8892a4;font-size:.88rem;">🛡️ Administrateur</span></li>
         <li><a href="../pages/deconnexion.php" style="color:#f87171;">Déconnexion</a></li>

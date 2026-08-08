@@ -66,6 +66,35 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Sidebar mobile menu for dashboard pages
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', () => {
+            const isOpen = sidebar.classList.toggle('open');
+            sidebarToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.classList.toggle('sidebar-open', isOpen);
+        });
+
+        document.addEventListener('click', function (e) {
+            if (window.innerWidth <= 900 && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+                sidebarToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        sidebar.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', () => {
+                if (window.innerWidth <= 900) {
+                    sidebar.classList.remove('open');
+                    document.body.classList.remove('sidebar-open');
+                    sidebarToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
     // Bouton Connexion
     const btnConnexion = document.getElementById('btn-connexion');
     if (btnConnexion) btnConnexion.addEventListener('click', () => openModal('modal-connexion'));

@@ -212,6 +212,9 @@ foreach ($combos as $c) {
 
 <nav class="navbar">
     <a href="../index.php" class="logo">🎓 <span>CampusLink</span> CI</a>
+    <button class="sidebar-toggle" type="button" aria-label="Afficher le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
         <li><span style="color:#8892a4;font-size:.88rem;">👨‍🏫 <?= sanitize($userName) ?></span></li>
         <li><span style="color:#8892a4;font-size:.85rem;"><?= sanitize($moi['urf_sigle']) ?> · <?= sanitize($classesLabel) ?></span></li>
