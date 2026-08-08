@@ -33,7 +33,10 @@ $urfsListe       = $db->query("SELECT id, nom, sigle FROM urfs ORDER BY nom")->f
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.php" class="logo">🎓 <span>CampusLink</span> CI</a>
-    <ul class="nav-links">
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
         <li><a href="index.php" class="active">Accueil</a></li>
         <li><a href="#presentation">Présentation</a></li>
         <li><a href="#" id="btn-connexion">Connexion</a></li>

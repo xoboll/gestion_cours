@@ -49,6 +49,23 @@ document.addEventListener('DOMContentLoaded', function () {
         if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
     }
 
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
     // Bouton Connexion
     const btnConnexion = document.getElementById('btn-connexion');
     if (btnConnexion) btnConnexion.addEventListener('click', () => openModal('modal-connexion'));
