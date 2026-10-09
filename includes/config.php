@@ -46,6 +46,15 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// ============================================================
+// LOGGER APPLICATIF - collecte des requêtes pour la détection DDoS
+// (Mémoire L3 RSI, Partie 2 Ch1 §1.5). Démarrer un buffer de sortie
+// est nécessaire pour pouvoir mesurer la taille de la réponse dans logger.php.
+// ============================================================
+require_once __DIR__ . '/logger.php';
+ob_start();
+logRequest();
+
 // Fonctions utilitaires
 function hashPassword($password) {
     return password_hash($password, PASSWORD_BCRYPT);
