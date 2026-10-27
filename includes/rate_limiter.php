@@ -12,16 +12,6 @@
 define('RATE_LIMIT_MAX_REQUESTS', 30);   // nombre max de requêtes autorisées
 define('RATE_LIMIT_WINDOW_SECONDS', 10); // par fenêtre glissante de X secondes
 
-function getClientIp(): string {
-    // Render se place en reverse proxy devant l'application : l'IP réelle
-    // du client arrive dans X-Forwarded-For, pas dans REMOTE_ADDR (qui
-    // correspondrait alors à l'IP interne du proxy, identique pour tous).
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-        return trim($ips[0]);
-    }
-    return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-}
 
 function checkRateLimit(): void {
     // Si APCu n'est pas chargé (configuration manquante), on laisse passer
