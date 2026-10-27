@@ -1,7 +1,14 @@
 <?php
 // ============================================================
-// RATE LIMITING - doit s'exécuter en tout premier, avant toute
-// connexion à la base de données (voir includes/rate_limiter.php).
+// LOGGER APPLICATIF - doit être chargé en premier : il définit
+// getClientIp(), réutilisée par le rate limiting juste après.
+// (Mémoire L3 RSI, Partie 2 Ch1 §1.5)
+// ============================================================
+require_once __DIR__ . '/logger.php';
+
+// ============================================================
+// RATE LIMITING - doit s'exécuter avant toute connexion à la
+// base de données (voir includes/rate_limiter.php).
 // ============================================================
 require_once __DIR__ . '/rate_limiter.php';
 checkRateLimit();
@@ -54,11 +61,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // ============================================================
-// LOGGER APPLICATIF - collecte des requêtes pour la détection DDoS
-// (Mémoire L3 RSI, Partie 2 Ch1 §1.5). Démarrer un buffer de sortie
-// est nécessaire pour pouvoir mesurer la taille de la réponse dans logger.php.
+// Démarrage du buffer de sortie et exécution du logger (la
+// fonction a déjà été chargée tout en haut du fichier).
 // ============================================================
-require_once __DIR__ . '/logger.php';
 ob_start();
 logRequest();
 
