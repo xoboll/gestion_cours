@@ -1,4 +1,11 @@
 <?php
+// ============================================================
+// RATE LIMITING - doit s'exécuter en tout premier, avant toute
+// connexion à la base de données (voir includes/rate_limiter.php).
+// ============================================================
+require_once __DIR__ . '/rate_limiter.php';
+checkRateLimit();
+
 // ============================================
 // CONFIGURATION BASE DE DONNÉES - PostgreSQL
 // ============================================
