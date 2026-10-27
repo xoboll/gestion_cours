@@ -9,7 +9,7 @@
 // jamais la base de données.
 // ============================================================
 
-define('RATE_LIMIT_MAX_REQUESTS', 3);   // nombre max de requêtes autorisées
+define('RATE_LIMIT_MAX_REQUESTS', 30);   // nombre max de requêtes autorisées
 define('RATE_LIMIT_WINDOW_SECONDS', 10); // par fenêtre glissante de X secondes
 
 
