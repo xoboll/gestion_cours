@@ -5,6 +5,10 @@ RUN apt-get update && apt-get install -y libpq-dev \
     && docker-php-ext-install pdo pdo_pgsql \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Extension APCu pour le rate limiting applicatif (compteur de requêtes
+# en mémoire partagée, voir includes/rate_limiter.php)
+RUN pecl install apcu && docker-php-ext-enable apcu
+
 RUN a2enmod rewrite
 
 # Copier tout le projet dans le dossier servi par Apache
